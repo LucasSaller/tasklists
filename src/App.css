@@ -38,6 +38,9 @@
   align-items: center;
   padding: 20px;
 }
+.top-title h2 {
+  font-size: 36px;
+}
 .App-link {
   color: #61dafb;
 }
@@ -49,7 +52,11 @@
 .page-wrapper {
   margin: 50px 0;
 }
-
+.tasks-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 /* poppins-200 - latin */
 @font-face {
   font-family: "Poppins";
