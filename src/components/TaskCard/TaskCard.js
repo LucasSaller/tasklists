@@ -2,7 +2,7 @@ import React from "react";
 import "./TaskCard.css";
 import { ReactComponent as Edit } from "../../assets/icons/edit.svg";
 import { ReactComponent as Delete } from "../../assets/icons/delete.svg";
-import CircularProgress from "./CircularProgress/CircularProgress";
+import CircularProgress from "../CircularProgress/CircularProgress";
 
 function TaskCard({ task }) {
   return (

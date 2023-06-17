@@ -47,6 +47,7 @@
   margin-top: 12px;
 }
 .priority-buttons button {
+  cursor: pointer;
   width: 90px;
   padding: 10px 0;
   text-align: center;
@@ -68,6 +69,18 @@
   border: 1px solid #f73446;
   color: #f73446;
 }
+.priority-buttons .low-selected {
+  background-color: #0ac947;
+  color: #fff;
+}
+.priority-buttons .high-selected {
+  background-color: #f73446;
+  color: #fff;
+}
+.priority-buttons .medium-selected {
+  background-color: #ffbd21;
+  color: #fff;
+}
 .task-form-add {
   background: #713fff;
   border: none;
@@ -83,4 +96,8 @@
 .addButton-container {
   display: flex;
   justify-content: flex-end;
+}
+:disabled {
+  cursor: not-allowed;
+  background-color: #7d8592;
 }
