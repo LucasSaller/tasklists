@@ -1,0 +1,86 @@
+.task-form-container {
+  background-color: #fff;
+  padding: 12px 24px;
+  border-radius: 14px;
+}
+.task-form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.task-form-header h4 {
+  font-size: 22px;
+  margin-bottom: 30px;
+}
+.task-form-header svg {
+  cursor: pointer;
+}
+.task-form-input {
+  display: flex;
+  flex-direction: column;
+}
+.task-form-input label,
+.task-form-input input {
+  color: #7d8592;
+  font-size: 14px;
+  font-weight: 600;
+}
+.task-form-input input {
+  background: #fff;
+  border: 1px solid #d8e0f0;
+  border-radius: 14px;
+  box-shadow: 0 1px 2px rgba(184, 200, 224, 0.222);
+  font-weight: 400;
+  outline: none;
+  padding: 16px 18px;
+  width: 95%;
+}
+
+.task-form-priority span {
+  color: #7d8592;
+  font-size: 14px;
+  font-weight: 600;
+}
+.priority-buttons {
+  display: flex;
+  gap: 13px;
+  margin-top: 12px;
+}
+.priority-buttons button {
+  width: 90px;
+  padding: 10px 0;
+  text-align: center;
+  text-transform: capitalize;
+  font-size: 14px;
+  border-radius: 10px;
+  letter-spacing: 0.1em;
+  background-color: #fff;
+}
+.low {
+  border: 1px solid #0ac947;
+  color: #0ac947;
+}
+.medium {
+  border: 1px solid #ffbd21;
+  color: #ffbd21;
+}
+.high {
+  border: 1px solid #f73446;
+  color: #f73446;
+}
+.task-form-add {
+  background: #713fff;
+  border: none;
+  border-radius: 14px;
+  box-shadow: 0 6px 12px rgba(113, 63, 255, 0.25);
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  outline: none;
+  padding: 13px 30px;
+}
+.addButton-container {
+  display: flex;
+  justify-content: flex-end;
+}

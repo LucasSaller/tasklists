@@ -2,6 +2,7 @@ import "./App.css";
 import { ReactComponent as Add } from "./assets/icons/add.svg";
 import { taskList } from "./data/data";
 import TaskCard from "./components/TaskCard/TaskCard";
+import AddEditTaskForm from "./components/TaskCard/AddEditTaskForm/AddEditTaskForm";
 function App() {
   return (
     <header className="App-header">
@@ -16,6 +17,7 @@ function App() {
               Add Task
             </button>
           </div>
+          <AddEditTaskForm />
           <div className="tasks-container">
             {taskList.map((task) => (
               <TaskCard task={task} />
