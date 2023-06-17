@@ -16,7 +16,7 @@
 }
 .task-title {
   color: #91929e;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 400;
   margin-bottom: 7px;
 }
@@ -26,7 +26,13 @@
   font-weight: 400;
   line-height: 1.2;
 }
-.task-priority-title {
+.task-priority {
+  color: #91929e;
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 7px;
+}
+.priority {
   color: #0ac947;
   font-size: 14px;
   font-weight: 700;
@@ -34,6 +40,9 @@
 }
 .high-priority {
   color: #f73446;
+}
+.medium-priority {
+  color: #ffbd21;
 }
 .task-status {
   width: 100px;

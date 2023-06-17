@@ -3,6 +3,7 @@ import "./TaskCard.css";
 import { ReactComponent as Edit } from "../../assets/icons/edit.svg";
 import { ReactComponent as Delete } from "../../assets/icons/delete.svg";
 import CircularProgress from "./CircularProgress/CircularProgress";
+
 function TaskCard({ task }) {
   return (
     <div className="task-card">
@@ -11,8 +12,10 @@ function TaskCard({ task }) {
         <span className="task">{task.title}</span>
       </div>
       <div className="task-name">
-        <span className="task-title">Priority</span>
-        <span className="task-priority-title">{task.priority}</span>
+        <span className="task-priority">Priority</span>
+        <span className={`${task.priority}-priority priority`}>
+          {task.priority}
+        </span>
       </div>
       <div className="task-status">
         <button className="task-button">{task.status}</button>
