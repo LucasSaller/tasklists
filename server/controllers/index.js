@@ -43,7 +43,7 @@ exports.updateTask = async (req, res) => {
       tasks: allTasks,
     });
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
