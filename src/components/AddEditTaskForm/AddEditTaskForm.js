@@ -6,10 +6,16 @@ import Modal from "../Modal/Modal";
 function AddEditTaskForm({ setOpenModal }) {
   const [inputValue, setInputValue] = useState("");
   const [priority, setPriority] = useState("low");
+  const [task, setTask] = useState({});
   const isDisabled = inputValue === "";
+
   const handleChange = (e) => {
     e.preventDefault();
     setInputValue(e.target.value);
+  };
+
+  const handleAdd = () => {
+    setTask({ title: inputValue, priority, status: "To do", progress: 0 });
   };
   return (
     <Modal>
@@ -23,7 +29,7 @@ function AddEditTaskForm({ setOpenModal }) {
           />
         </div>
         <div className="task-form-input">
-          <label for>Task</label>
+          <label>Task</label>
           <input
             type="text"
             placeholder="Type your task here..."
@@ -60,6 +66,7 @@ function AddEditTaskForm({ setOpenModal }) {
           <button
             className={`task-form-add ${isDisabled ? "disabled" : ""}`}
             disabled={isDisabled}
+            onClick={handleAdd}
           >
             Add
           </button>

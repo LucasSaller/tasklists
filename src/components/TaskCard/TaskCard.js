@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import "./TaskCard.css";
 import { ReactComponent as Edit } from "../../assets/icons/edit.svg";
 import { ReactComponent as Delete } from "../../assets/icons/delete.svg";
 import CircularProgress from "../CircularProgress/CircularProgress";
 
 function TaskCard({ task }) {
+  const [status, setStatus] = useState(task.status);
+  const statusCycle = {
+    "To Do": "In Progress",
+    "In Progress": "Done",
+    Done: "To Do",
+  };
+
+  const handleChangeStatus = () => {
+    setStatus(statusCycle[status]);
+  };
   return (
     <div className="task-card">
       <div className="task-name">
@@ -18,7 +28,9 @@ function TaskCard({ task }) {
         </span>
       </div>
       <div className="task-status">
-        <button className="task-button">{task.status}</button>
+        <button className="task-button" onClick={handleChangeStatus}>
+          {status}
+        </button>
       </div>
       <div className="task-progress">
         {

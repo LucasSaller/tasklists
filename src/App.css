@@ -1,25 +1,18 @@
+html {
+  background-color: #f0f2f5;
+}
 * {
   font-family: "Poppins", sans-serif;
   color: #0a1629;
   margin: 0;
   padding: 0;
   border: 0;
-  font-size: 100%;
-  vertical-align: baseline;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  text-size-adjust: none;
 }
 
 .App-header {
   background-color: #f0f2f5;
   min-height: 100vh;
-  /* display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center; */
   font-size: calc(10px + 2vmin);
-  color: white;
 }
 
 .button {
