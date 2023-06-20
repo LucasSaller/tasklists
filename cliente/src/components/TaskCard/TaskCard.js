@@ -60,19 +60,21 @@ function TaskCard({ task, setOpenModal, setIsEditing, setTasks, tasks }) {
           {task.priority}
         </span>
       </div>
-      <div className="task-status">
-        <button className="task-button" onClick={handleChangeStatus}>
-          {taskChanges.status}
-        </button>
-      </div>
-      <div className="task-progress">
-        {
-          <CircularProgress
-            strokeWidth={2}
-            sqSize={24}
-            percentage={taskChanges.progress}
-          />
-        }
+      <div className="status-progress">
+        <div className="task-status">
+          <button className="task-button" onClick={handleChangeStatus}>
+            {taskChanges.status}
+          </button>
+        </div>
+        <div className="task-progress">
+          {
+            <CircularProgress
+              strokeWidth={2}
+              sqSize={24}
+              percentage={taskChanges.progress}
+            />
+          }
+        </div>
       </div>
       <div className="task-actions">
         <Edit onClick={editTask} />
@@ -84,24 +86,20 @@ function TaskCard({ task, setOpenModal, setIsEditing, setTasks, tasks }) {
         {deleteModal && (
           <Modal>
             <div className="delete-modal">
-              <div className="close-button">
-                <Close
-                  onClick={() => {
-                    setDeleteModal(false);
-                  }}
-                />
-              </div>
               <div className="delete-header">
-                <h5>Are you sure u want to delete?</h5>
+                <h5 className="delete-title">Are you sure u want to delete?</h5>
               </div>
               <div className="delete-buttons">
-                <button onClick={removeTask}>Sure, Delete</button>
                 <button
+                  className="cancel-button"
                   onClick={() => {
                     setDeleteModal(false);
                   }}
                 >
                   Cancel
+                </button>
+                <button onClick={removeTask} className="remove-button">
+                  Sure, Delete
                 </button>
               </div>
             </div>

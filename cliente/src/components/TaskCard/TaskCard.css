@@ -11,7 +11,7 @@
 .task-name {
   display: flex;
   flex-direction: column;
-  width: 170px;
+  width: 100%;
 }
 .task-title {
   color: #91929e;
@@ -78,11 +78,6 @@
   align-items: center;
   justify-content: center;
 }
-.delete-header .close-button {
-  justify-self: flex-end;
-  display: flex;
-  width: 100%;
-}
 
 .delete-buttons {
   display: flex;
@@ -91,4 +86,54 @@
 .delete-buttons button {
   padding: 13px 30px;
   cursor: pointer;
+}
+
+.delete-buttons .remove-button {
+  background-color: rgb(246, 81, 96);
+  color: #fff;
+  font-weight: 500;
+}
+.delete-buttons .remove-button:hover {
+  opacity: 0.8;
+}
+.delete-buttons .cancel-button:hover {
+  opacity: 0.8;
+}
+.status-progress {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+}
+.task-progress {
+  margin-top: 10px;
+}
+
+@media (max-width: 800px) {
+  .task-card {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin: 0 auto;
+    gap: 10px;
+  }
+  .task-name {
+    flex-direction: row;
+    gap: 10px;
+    width: 100%;
+  }
+  .status-progress {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+  }
+  .task-progress {
+    margin-top: 0;
+  }
+  .task-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
 }

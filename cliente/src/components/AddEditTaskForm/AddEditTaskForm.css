@@ -101,3 +101,8 @@
   cursor: not-allowed;
   background-color: #7d8592;
 }
+@media (max-width: 800px) {
+  .addButton-container {
+    margin-top: 10px;
+  }
+}

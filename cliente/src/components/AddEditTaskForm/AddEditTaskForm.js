@@ -98,7 +98,7 @@ function AddEditTaskForm({ setOpenModal, isEditing, setIsEditing }) {
             disabled={isDisabled}
             onClick={handleAdd}
           >
-            Add
+            {isEditing.editing ? "Save" : "Add"}
           </button>
         </div>
       </div>

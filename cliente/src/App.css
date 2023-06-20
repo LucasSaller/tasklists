@@ -50,6 +50,7 @@ html {
   flex-direction: column;
   gap: 10px;
 }
+
 /* poppins-200 - latin */
 @font-face {
   font-family: "Poppins";
