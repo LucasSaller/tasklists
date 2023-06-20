@@ -2,21 +2,18 @@ import React, { useState } from "react";
 import "./TaskCard.css";
 import { ReactComponent as Edit } from "../../assets/icons/edit.svg";
 import { ReactComponent as Delete } from "../../assets/icons/delete.svg";
+import { ReactComponent as Close } from "../../assets/icons/close.svg";
 import CircularProgress from "../CircularProgress/CircularProgress";
 import { updateTask, deleteTask } from "../../API/api";
+import Modal from "../Modal/Modal";
 
-function TaskCard({
-  task,
-  setOpenModal,
-  setIsEditing,
-  isEditing,
-  setTasks,
-  tasks,
-}) {
-  const [status, setStatus] = useState({
+function TaskCard({ task, setOpenModal, setIsEditing, setTasks, tasks }) {
+  const [taskChanges, setTaskChanges] = useState({
     status: task.status,
     progress: task.progress,
   });
+  const [deleteModal, setDeleteModal] = useState(false);
+
   const statusCycle = {
     "To Do": "In Progress",
     "In Progress": "Done",
@@ -29,26 +26,33 @@ function TaskCard({
   };
 
   const handleChangeStatus = () => {
-    setStatus({
-      status: statusCycle[task.status],
-      progress: progressCycle[task.progress],
+    setTaskChanges({
+      status: statusCycle[taskChanges.status],
+      progress: progressCycle[taskChanges.progress],
     });
     updateTask(task._id, {
       ...task,
-      status: statusCycle[task.status],
-      progress: progressCycle[task.progress],
+      status: statusCycle[taskChanges.status],
+      progress: progressCycle[taskChanges.progress],
     });
   };
   const editTask = () => {
     setIsEditing({ task: task, editing: true });
     setOpenModal(true);
   };
+  const removeTask = () => {
+    deleteTask(task._id);
+    setTasks(tasks.filter((t) => t._id !== task._id));
+  };
+  const capitalizeFirstLetter = (string) => {
+    return string[0].toUpperCase() + string.slice(1, string.length);
+  };
 
   return (
     <div className="task-card">
       <div className="task-name">
         <span className="task-title">Task</span>
-        <span className="task">{task.title}</span>
+        <span className="task">{capitalizeFirstLetter(task.title)}</span>
       </div>
       <div className="task-name">
         <span className="task-priority">Priority</span>
@@ -58,7 +62,7 @@ function TaskCard({
       </div>
       <div className="task-status">
         <button className="task-button" onClick={handleChangeStatus}>
-          {status.status}
+          {taskChanges.status}
         </button>
       </div>
       <div className="task-progress">
@@ -66,7 +70,7 @@ function TaskCard({
           <CircularProgress
             strokeWidth={2}
             sqSize={24}
-            percentage={status.progress}
+            percentage={taskChanges.progress}
           />
         }
       </div>
@@ -74,10 +78,35 @@ function TaskCard({
         <Edit onClick={editTask} />
         <Delete
           onClick={() => {
-            deleteTask(task._id);
-            setTasks(tasks.filter((t) => t._id !== task._id));
+            setDeleteModal(true);
           }}
         />
+        {deleteModal && (
+          <Modal>
+            <div className="delete-modal">
+              <div className="close-button">
+                <Close
+                  onClick={() => {
+                    setDeleteModal(false);
+                  }}
+                />
+              </div>
+              <div className="delete-header">
+                <h5>Are you sure u want to delete?</h5>
+              </div>
+              <div className="delete-buttons">
+                <button onClick={removeTask}>Sure, Delete</button>
+                <button
+                  onClick={() => {
+                    setDeleteModal(false);
+                  }}
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </Modal>
+        )}
       </div>
     </div>
   );
