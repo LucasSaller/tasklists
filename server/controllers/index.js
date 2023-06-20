@@ -53,7 +53,7 @@ exports.updateTask = async (req, res) => {
 exports.deleteTask = async (req, res) => {
   try {
     const deletedTask = await Task.findByIdAndRemove(req.params.id);
-    const allNotes = await Task.find();
+    const allTasks = await Task.find();
     res.status(200).json({
       message: "Task deleted",
       task: deletedTask,

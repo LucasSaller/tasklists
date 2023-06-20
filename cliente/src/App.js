@@ -9,7 +9,11 @@ function App() {
   const [openModal, setOpenModal] = useState(false);
   const [tasks, setTasks] = useState([]);
   const [isEditing, setIsEditing] = useState({ editing: false, task: [] });
-
+  const priorities = ["high", "medium", "low"];
+  const orderedTasks = tasks.sort(
+    (x, y) => priorities.indexOf(x.priority) - priorities.indexOf(y.priority)
+  );
+  console.log(orderedTasks);
   useEffect(() => {
     const fetchNotes = () => {
       getTasks()
@@ -40,13 +44,15 @@ function App() {
             />
           )}
           <div className="tasks-container">
-            {tasks.map((task) => (
+            {orderedTasks.map((task) => (
               <TaskCard
                 task={task}
                 key={task.id}
                 setOpenModal={setOpenModal}
                 isEditing={isEditing}
                 setIsEditing={setIsEditing}
+                setTasks={setTasks}
+                tasks={tasks}
               />
             ))}
           </div>

@@ -3,9 +3,16 @@ import "./TaskCard.css";
 import { ReactComponent as Edit } from "../../assets/icons/edit.svg";
 import { ReactComponent as Delete } from "../../assets/icons/delete.svg";
 import CircularProgress from "../CircularProgress/CircularProgress";
-import { updateTask } from "../../API/api";
+import { updateTask, deleteTask } from "../../API/api";
 
-function TaskCard({ task, setOpenModal, setIsEditing, isEditing }) {
+function TaskCard({
+  task,
+  setOpenModal,
+  setIsEditing,
+  isEditing,
+  setTasks,
+  tasks,
+}) {
   const [status, setStatus] = useState({
     status: task.status,
     progress: task.progress,
@@ -36,6 +43,7 @@ function TaskCard({ task, setOpenModal, setIsEditing, isEditing }) {
     setIsEditing({ task: task, editing: true });
     setOpenModal(true);
   };
+
   return (
     <div className="task-card">
       <div className="task-name">
@@ -64,7 +72,12 @@ function TaskCard({ task, setOpenModal, setIsEditing, isEditing }) {
       </div>
       <div className="task-actions">
         <Edit onClick={editTask} />
-        <Delete />
+        <Delete
+          onClick={() => {
+            deleteTask(task._id);
+            setTasks(tasks.filter((t) => t._id !== task._id));
+          }}
+        />
       </div>
     </div>
   );
