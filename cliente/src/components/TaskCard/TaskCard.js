@@ -6,19 +6,31 @@ import CircularProgress from "../CircularProgress/CircularProgress";
 import { updateTask } from "../../API/api";
 
 function TaskCard({ task }) {
-  const [status, setStatus] = useState(task.status);
+  const [status, setStatus] = useState({
+    status: task.status,
+    progress: task.progress,
+  });
   const statusCycle = {
     "To Do": "In Progress",
     "In Progress": "Done",
     Done: "To Do",
   };
-  // const progressCycle={
-  //   0:
-  // }
+  const progressCycle = {
+    0: 50,
+    50: 100,
+    100: 0,
+  };
 
   const handleChangeStatus = () => {
-    setStatus(statusCycle[task.status]);
-    updateTask(task._id, { ...task, status: statusCycle[task.status] });
+    setStatus({
+      status: statusCycle[task.status],
+      progress: progressCycle[task.progress],
+    });
+    updateTask(task._id, {
+      ...task,
+      status: statusCycle[task.status],
+      progress: progressCycle[task.progress],
+    });
   };
   return (
     <div className="task-card">
@@ -34,7 +46,7 @@ function TaskCard({ task }) {
       </div>
       <div className="task-status">
         <button className="task-button" onClick={handleChangeStatus}>
-          {status}
+          {status.status}
         </button>
       </div>
       <div className="task-progress">
@@ -42,7 +54,7 @@ function TaskCard({ task }) {
           <CircularProgress
             strokeWidth={2}
             sqSize={24}
-            percentage={task.progress}
+            percentage={status.progress}
           />
         }
       </div>
