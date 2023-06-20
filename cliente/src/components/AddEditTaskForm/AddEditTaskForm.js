@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ReactComponent as Close } from "../../assets/icons/close.svg";
 import "./AddEditTaskForm.css";
 import Modal from "../Modal/Modal";
+import { addTask } from "../../API/api";
 
 function AddEditTaskForm({ setOpenModal }) {
   const [inputValue, setInputValue] = useState("");
@@ -12,11 +13,22 @@ function AddEditTaskForm({ setOpenModal }) {
   const handleChange = (e) => {
     e.preventDefault();
     setInputValue(e.target.value);
+    setTask({ ...task, title: e.target.value, priority });
   };
 
   const handleAdd = () => {
-    setTask({ title: inputValue, priority, status: "To do", progress: 0 });
+    const newTask = {
+      title: inputValue,
+      priority: priority,
+      status: "To Do",
+      progress: 0,
+    };
+    console.log(newTask);
+    setTask(newTask);
+    addTask(newTask);
+    setOpenModal(false);
   };
+
   return (
     <Modal>
       <div className="task-form-container">

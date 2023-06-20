@@ -3,9 +3,21 @@ import { ReactComponent as Add } from "./assets/icons/add.svg";
 import { taskList } from "./data/data";
 import TaskCard from "./components/TaskCard/TaskCard";
 import AddEditTaskForm from "./components/AddEditTaskForm/AddEditTaskForm";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getTasks } from "./API/api";
+
 function App() {
   const [openModal, setOpenModal] = useState(false);
+  const [tasks, setTasks] = useState([]);
+
+  useEffect(() => {
+    const fetchNotes = () => {
+      getTasks()
+        .then(({ data }) => setTasks(data.tasks))
+        .catch((err) => console.log(err));
+    };
+    fetchNotes();
+  }, []);
 
   return (
     <header className="App-header">
@@ -22,10 +34,11 @@ function App() {
           </div>
           {openModal && <AddEditTaskForm setOpenModal={setOpenModal} />}
           <div className="tasks-container">
-            {taskList.map((task) => (
+            {tasks.map((task) => (
               <TaskCard task={task} key={task.id} />
             ))}
           </div>
+          {tasks.length === 0 && <h3> No hay tareas</h3>}
         </div>
       </div>
     </header>

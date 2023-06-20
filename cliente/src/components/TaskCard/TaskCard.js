@@ -3,6 +3,7 @@ import "./TaskCard.css";
 import { ReactComponent as Edit } from "../../assets/icons/edit.svg";
 import { ReactComponent as Delete } from "../../assets/icons/delete.svg";
 import CircularProgress from "../CircularProgress/CircularProgress";
+import { updateTask } from "../../API/api";
 
 function TaskCard({ task }) {
   const [status, setStatus] = useState(task.status);
@@ -11,9 +12,13 @@ function TaskCard({ task }) {
     "In Progress": "Done",
     Done: "To Do",
   };
+  // const progressCycle={
+  //   0:
+  // }
 
   const handleChangeStatus = () => {
-    setStatus(statusCycle[status]);
+    setStatus(statusCycle[task.status]);
+    updateTask(task._id, { ...task, status: statusCycle[task.status] });
   };
   return (
     <div className="task-card">

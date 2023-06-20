@@ -1,17 +1,19 @@
 const mongoose = require("mongoose");
 
 const taskSchema = mongoose.Schema({
-  id: {
-    type: Number,
-  },
-
   title: {
     type: String,
     required: true,
   },
-  status: {
+  priority: {
     type: String,
     required: true,
+  },
+  progress: {
+    type: Number,
+  },
+  status: {
+    type: String,
   },
 });
 

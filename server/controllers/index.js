@@ -14,10 +14,13 @@ exports.getTasks = async (req, res) => {
 exports.addTask = async (req, res) => {
   try {
     const body = req.body;
+    console.log(body);
     const task = new Task({
       id: body.id,
       title: body.title,
       status: body.status,
+      priority: body.priority,
+      progress: body.progress,
     });
     const newTask = await task.save();
     const allTasks = await Task.find();
