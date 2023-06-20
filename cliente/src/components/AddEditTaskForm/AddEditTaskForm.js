@@ -2,13 +2,21 @@ import React, { useState, useEffect } from "react";
 import { ReactComponent as Close } from "../../assets/icons/close.svg";
 import "./AddEditTaskForm.css";
 import Modal from "../Modal/Modal";
-import { addTask } from "../../API/api";
+import { addTask, updateTask } from "../../API/api";
 
-function AddEditTaskForm({ setOpenModal }) {
-  const [inputValue, setInputValue] = useState("");
+function AddEditTaskForm({ setOpenModal, isEditing, setIsEditing }) {
+  const [inputValue, setInputValue] = useState(
+    isEditing.editing ? isEditing.task.title : ""
+  );
   const [priority, setPriority] = useState("low");
   const [task, setTask] = useState({});
   const isDisabled = inputValue === "";
+
+  useEffect(() => {
+    if (isEditing.editing) {
+      setPriority(isEditing.task.priority);
+    }
+  }, [isEditing]);
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -17,26 +25,35 @@ function AddEditTaskForm({ setOpenModal }) {
   };
 
   const handleAdd = () => {
-    const newTask = {
-      title: inputValue,
-      priority: priority,
-      status: "To Do",
-      progress: 0,
-    };
-    console.log(newTask);
-    setTask(newTask);
-    addTask(newTask);
+    if (isEditing.editing) {
+      const updatedTask = {
+        title: inputValue,
+        priority: priority,
+      };
+      updateTask(isEditing.task._id, updatedTask);
+    } else {
+      const newTask = {
+        title: inputValue,
+        priority: priority,
+        status: "To Do",
+        progress: 0,
+      };
+      setTask(newTask);
+      addTask(newTask);
+    }
     setOpenModal(false);
+    setIsEditing({ ...isEditing, editing: false });
   };
 
   return (
     <Modal>
       <div className="task-form-container">
         <div className="task-form-header">
-          <h4>Add Task</h4>
+          <h4>{isEditing.editing ? "Edit Task" : "Add Task"}</h4>
           <Close
             onClick={() => {
               setOpenModal(false);
+              setIsEditing({ ...isEditing, editing: false });
             }}
           />
         </div>
@@ -47,6 +64,7 @@ function AddEditTaskForm({ setOpenModal }) {
             placeholder="Type your task here..."
             name="task"
             onChange={handleChange}
+            value={inputValue}
           />
         </div>
         <div className="task-form-priority">

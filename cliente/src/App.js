@@ -1,6 +1,5 @@
 import "./App.css";
 import { ReactComponent as Add } from "./assets/icons/add.svg";
-import { taskList } from "./data/data";
 import TaskCard from "./components/TaskCard/TaskCard";
 import AddEditTaskForm from "./components/AddEditTaskForm/AddEditTaskForm";
 import { useState, useEffect } from "react";
@@ -9,6 +8,7 @@ import { getTasks } from "./API/api";
 function App() {
   const [openModal, setOpenModal] = useState(false);
   const [tasks, setTasks] = useState([]);
+  const [isEditing, setIsEditing] = useState({ editing: false, task: [] });
 
   useEffect(() => {
     const fetchNotes = () => {
@@ -17,7 +17,7 @@ function App() {
         .catch((err) => console.log(err));
     };
     fetchNotes();
-  }, []);
+  }, [isEditing]);
 
   return (
     <header className="App-header">
@@ -32,10 +32,22 @@ function App() {
               Add Task
             </button>
           </div>
-          {openModal && <AddEditTaskForm setOpenModal={setOpenModal} />}
+          {openModal && (
+            <AddEditTaskForm
+              setOpenModal={setOpenModal}
+              isEditing={isEditing}
+              setIsEditing={setIsEditing}
+            />
+          )}
           <div className="tasks-container">
             {tasks.map((task) => (
-              <TaskCard task={task} key={task.id} />
+              <TaskCard
+                task={task}
+                key={task.id}
+                setOpenModal={setOpenModal}
+                isEditing={isEditing}
+                setIsEditing={setIsEditing}
+              />
             ))}
           </div>
           {tasks.length === 0 && <h3> No hay tareas</h3>}

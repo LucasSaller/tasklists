@@ -5,7 +5,7 @@ import { ReactComponent as Delete } from "../../assets/icons/delete.svg";
 import CircularProgress from "../CircularProgress/CircularProgress";
 import { updateTask } from "../../API/api";
 
-function TaskCard({ task }) {
+function TaskCard({ task, setOpenModal, setIsEditing, isEditing }) {
   const [status, setStatus] = useState({
     status: task.status,
     progress: task.progress,
@@ -31,6 +31,10 @@ function TaskCard({ task }) {
       status: statusCycle[task.status],
       progress: progressCycle[task.progress],
     });
+  };
+  const editTask = () => {
+    setIsEditing({ task: task, editing: true });
+    setOpenModal(true);
   };
   return (
     <div className="task-card">
@@ -59,7 +63,7 @@ function TaskCard({ task }) {
         }
       </div>
       <div className="task-actions">
-        <Edit />
+        <Edit onClick={editTask} />
         <Delete />
       </div>
     </div>
