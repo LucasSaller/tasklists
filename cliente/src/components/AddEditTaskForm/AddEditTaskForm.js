@@ -24,13 +24,15 @@ function AddEditTaskForm({ setOpenModal, isEditing, setIsEditing }) {
     setTask({ ...task, title: e.target.value, priority });
   };
 
-  const handleAdd = () => {
+  const handleAdd = async () => {
     if (isEditing.editing) {
       const updatedTask = {
         title: inputValue,
         priority: priority,
       };
-      updateTask(isEditing.task._id, updatedTask);
+      const response = await updateTask(isEditing.task._id, updatedTask);
+      setTask(response.data.tasks);
+      setIsEditing({ task: [], editing: false });
     } else {
       const newTask = {
         title: inputValue,
@@ -42,7 +44,6 @@ function AddEditTaskForm({ setOpenModal, isEditing, setIsEditing }) {
       addTask(newTask);
     }
     setOpenModal(false);
-    setIsEditing({ ...isEditing, editing: false });
   };
 
   return (

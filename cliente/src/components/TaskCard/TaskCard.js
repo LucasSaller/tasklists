@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./TaskCard.css";
 import { ReactComponent as Edit } from "../../assets/icons/edit.svg";
 import { ReactComponent as Delete } from "../../assets/icons/delete.svg";
-import { ReactComponent as Close } from "../../assets/icons/close.svg";
 import CircularProgress from "../CircularProgress/CircularProgress";
 import { updateTask, deleteTask } from "../../API/api";
 import Modal from "../Modal/Modal";
@@ -26,12 +25,12 @@ function TaskCard({ task, setOpenModal, setIsEditing, setTasks, tasks }) {
   };
 
   const handleChangeStatus = () => {
-    setTaskChanges({
+    updateTask(task._id, {
+      ...task,
       status: statusCycle[taskChanges.status],
       progress: progressCycle[taskChanges.progress],
     });
-    updateTask(task._id, {
-      ...task,
+    setTaskChanges({
       status: statusCycle[taskChanges.status],
       progress: progressCycle[taskChanges.progress],
     });

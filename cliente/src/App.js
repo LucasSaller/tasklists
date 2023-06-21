@@ -7,23 +7,22 @@ import { getTasks } from "./API/api";
 import Loader from "./components/Loader/Loader";
 
 function App() {
-  const [openModal, setOpenModal] = useState(false);
   const [tasks, setTasks] = useState([]);
+  const [openModal, setOpenModal] = useState(false);
   const [isEditing, setIsEditing] = useState({ editing: false, task: [] });
   const priorities = ["high", "medium", "low"];
   const orderedTasks = tasks.sort(
     (x, y) => priorities.indexOf(x.priority) - priorities.indexOf(y.priority)
   );
-  console.log(orderedTasks);
+
   useEffect(() => {
-    const fetchNotes = () => {
-      getTasks()
+    const fetchNotes = async () => {
+      await getTasks()
         .then(({ data }) => setTasks(data.tasks))
         .catch((err) => console.log(err));
     };
     fetchNotes();
   }, [isEditing]);
-
   return (
     <header className="App-header">
       <div className="container">
@@ -48,7 +47,7 @@ function App() {
             {orderedTasks.map((task) => (
               <TaskCard
                 task={task}
-                key={task.id}
+                key={task._id}
                 setOpenModal={setOpenModal}
                 isEditing={isEditing}
                 setIsEditing={setIsEditing}
