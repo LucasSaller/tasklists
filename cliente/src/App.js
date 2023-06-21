@@ -4,6 +4,7 @@ import TaskCard from "./components/TaskCard/TaskCard";
 import AddEditTaskForm from "./components/AddEditTaskForm/AddEditTaskForm";
 import { useState, useEffect } from "react";
 import { getTasks } from "./API/api";
+import Loader from "./components/Loader/Loader";
 
 function App() {
   const [openModal, setOpenModal] = useState(false);
@@ -56,7 +57,7 @@ function App() {
               />
             ))}
           </div>
-          {tasks.length === 0 && <h3> No hay tareas</h3>}
+          {tasks.length === 0 && <Loader />}
         </div>
       </div>
     </header>
