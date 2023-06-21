@@ -37,11 +37,7 @@ html {
 .App-link {
   color: #61dafb;
 }
-.container {
-  /* max-width: 100%;
-  width: 720px;
-  margin: 0 auto; */
-}
+
 .page-wrapper {
   width: 720px;
   max-width: 100%;
