@@ -25,7 +25,7 @@ exports.addTask = async (req, res) => {
     const allTasks = await Task.find();
     res
       .status(201)
-      .json({ message: "Task added", task: newTask, notes: allTasks });
+      .json({ message: "Task added", task: newTask, tasks: allTasks });
   } catch (error) {
     throw error;
   }
