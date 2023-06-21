@@ -38,19 +38,24 @@ html {
   color: #61dafb;
 }
 .container {
-  max-width: 100%;
+  /* max-width: 100%;
   width: 720px;
-  margin: 0 auto;
+  margin: 0 auto; */
 }
 .page-wrapper {
-  margin: 50px 0;
+  width: 720px;
+  display: grid;
+  margin: 0 auto;
+  min-height: 100vh;
 }
 .tasks-container {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-
+.footer {
+  color: black;
+}
 /* poppins-200 - latin */
 @font-face {
   font-family: "Poppins";

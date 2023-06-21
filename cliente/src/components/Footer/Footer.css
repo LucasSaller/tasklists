@@ -1,0 +1,11 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;
+  padding: 20px;
+  align-content: flex-end;
+}
+.footer-icons svg {
+  width: 40px;
+}
