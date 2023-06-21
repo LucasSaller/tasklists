@@ -18,8 +18,8 @@ function App() {
   );
 
   useEffect(() => {
+    setNewTask(false);
     const fetchNotes = async () => {
-      setNewTask(false);
       await getTasks()
         .then(({ data }) => setTasks(data.tasks))
         .catch((err) => console.log(err));
