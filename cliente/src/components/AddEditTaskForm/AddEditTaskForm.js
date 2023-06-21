@@ -42,8 +42,7 @@ function AddEditTaskForm({ setOpenModal, isEditing, setIsEditing, setTasks }) {
       };
       setTask(newTask);
       const tasks = await addTask(newTask);
-      console.log(tasks.data.tasks);
-      //setTasks(tasks);
+      setTasks(tasks.data.tasks);
     }
     setOpenModal(false);
   };
