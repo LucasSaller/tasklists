@@ -11,6 +11,7 @@ function App() {
   const [tasks, setTasks] = useState([]);
   const [openModal, setOpenModal] = useState(false);
   const [isEditing, setIsEditing] = useState({ editing: false, task: [] });
+  const [newTask, setNewTask] = useState(false);
   const priorities = ["high", "medium", "low"];
   const orderedTasks = tasks.sort(
     (x, y) => priorities.indexOf(x.priority) - priorities.indexOf(y.priority)
@@ -18,12 +19,13 @@ function App() {
 
   useEffect(() => {
     const fetchNotes = async () => {
+      setNewTask(false);
       await getTasks()
         .then(({ data }) => setTasks(data.tasks))
         .catch((err) => console.log(err));
     };
     fetchNotes();
-  }, [isEditing]);
+  }, [isEditing, newTask]);
   return (
     <div className="page-wrapper">
       <header className="top-title">
@@ -41,6 +43,7 @@ function App() {
             setOpenModal={setOpenModal}
             isEditing={isEditing}
             setIsEditing={setIsEditing}
+            setNewTask={setNewTask}
           />
         )}
         <div className="tasks-container">
