@@ -4,12 +4,7 @@ import "./AddEditTaskForm.css";
 import Modal from "../Modal/Modal";
 import { addTask, updateTask } from "../../API/api";
 
-function AddEditTaskForm({
-  setOpenModal,
-  isEditing,
-  setIsEditing,
-  setNewTask,
-}) {
+function AddEditTaskForm({ setOpenModal, isEditing, setIsEditing, setTasks }) {
   const [inputValue, setInputValue] = useState(
     isEditing.editing ? isEditing.task.title : ""
   );
@@ -46,8 +41,9 @@ function AddEditTaskForm({
         progress: 0,
       };
       setTask(newTask);
-      addTask(newTask);
-      setNewTask(true);
+      const tasks = await addTask(newTask);
+      console.log(tasks.data.tasks);
+      //setTasks(tasks);
     }
     setOpenModal(false);
   };
