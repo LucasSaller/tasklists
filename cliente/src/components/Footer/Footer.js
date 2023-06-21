@@ -8,8 +8,21 @@ function Footer() {
     <footer className="footer">
       <div>Made with ❤ by Lucas Saller</div>
       <div className="footer-icons">
-        <Linkedin />
-        <Github />
+        <a
+          href="https://www.linkedin.com/in/lucas-saller-23640918a/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <Linkedin />
+        </a>
+
+        <a
+          href="https://github.com/LucasSaller/tasklists/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <Github />
+        </a>
       </div>
     </footer>
   );
