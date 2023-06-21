@@ -44,6 +44,7 @@ html {
 }
 .page-wrapper {
   width: 720px;
+  max-width: 100%;
   display: grid;
   margin: 0 auto;
   min-height: 100vh;
