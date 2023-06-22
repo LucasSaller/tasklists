@@ -14,6 +14,11 @@
   flex-direction: column;
   width: 170px;
 }
+.task-priority {
+  display: flex;
+  flex-direction: column;
+  width: 170px;
+}
 .task-title {
   color: #37393e;
   font-size: 14px;
@@ -27,7 +32,7 @@
   line-height: 1.2;
   line-break: anywhere;
 }
-.task-priority {
+.task-priority-title {
   color: #37393e;
   font-size: 14px;
   font-weight: 400;
@@ -110,14 +115,28 @@
 .task-progress {
   margin-top: 10px;
 }
+.task-header {
+  display: flex;
+}
 
 @media (max-width: 800px) {
+  .task-header {
+    display: flex;
+    width: 100%;
+  }
+  .task-priority {
+    width: fit-content;
+  }
+  .task-priority-title {
+    display: none;
+  }
+
   .task-card {
     display: flex;
     flex-direction: column;
     width: 60%;
     margin: 0 auto;
-    gap: 15px;
+    gap: 20px;
   }
   .task-status {
     width: max-content;

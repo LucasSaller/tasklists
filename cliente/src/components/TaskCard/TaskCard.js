@@ -49,15 +49,17 @@ function TaskCard({ task, setOpenModal, setIsEditing, setTasks, tasks }) {
 
   return (
     <div className="task-card">
-      <div className="task-name">
-        <span className="task-title">Task</span>
-        <span className="task">{capitalizeFirstLetter(task.title)}</span>
-      </div>
-      <div className="task-name">
-        <span className="task-priority">Priority</span>
-        <span className={`${task.priority}-priority priority`}>
-          {task.priority}
-        </span>
+      <div className="task-header">
+        <div className="task-name">
+          <span className="task-title">Task</span>
+          <span className="task">{capitalizeFirstLetter(task.title)}</span>
+        </div>
+        <div className="task-priority">
+          <span className="task-priority-title">Priority</span>
+          <span className={`${task.priority}-priority priority`}>
+            {task.priority}
+          </span>
+        </div>
       </div>
       <div className="status-progress">
         <div className="task-status">
