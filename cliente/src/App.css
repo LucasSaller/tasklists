@@ -53,6 +53,11 @@ html {
 .footer {
   color: black;
 }
+@media (max-width: 800px) {
+  .tasks-container {
+    padding: 35px 20px;
+  }
+}
 /* poppins-200 - latin */
 @font-face {
   font-family: "Poppins";
