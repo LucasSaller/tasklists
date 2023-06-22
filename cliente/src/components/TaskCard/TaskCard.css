@@ -13,11 +13,13 @@
   display: flex;
   flex-direction: column;
   width: 170px;
+  margin: 5px;
 }
 .task-priority {
   display: flex;
   flex-direction: column;
   width: 170px;
+  margin: 5px;
 }
 .task-title {
   color: #37393e;
@@ -125,6 +127,10 @@
   }
   .task-priority {
     width: fit-content;
+    margin: 0;
+  }
+  .task-name {
+    margin: 0;
   }
   .task-priority-title {
     display: none;
